@@ -1,115 +1,400 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <title>FLOR AMARILLA :)</title>
-    
-    <style>
-      * {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-        font-family: sans-serif;
-      }
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Acceso Especial 🌻 Flores Amarillas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
 
-      body {
-        display: flex;
-        width: 100%;
-        height: 100vh;
-        justify-content: center;
-        align-items: center;
-        background-color: #fce4ec;
-      }
+    body {
+      display: flex;
+      width: 100%;
+      height: 100vh;
+      height: 100dvh; /* dynamic viewport height for mobile browsers */
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at center, #2c1654 0%, #12072b 100%);
+      overflow: hidden;
+      position: relative;
+      padding: 15px;
+    }
 
-      .container {
-        width: 300px;
-        text-align: center;
-        padding: 20px;
-        background-color: #fff;
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
-      }
+    /* Ambient background glowing circles */
+    .glow-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.5;
+      animation: float-glow 8s infinite alternate ease-in-out;
+    }
+    .glow-orb-1 {
+      width: clamp(200px, 40vw, 300px);
+      height: clamp(200px, 40vw, 300px);
+      background: #ffb703;
+      top: 10%;
+      left: 10%;
+    }
+    .glow-orb-2 {
+      width: clamp(220px, 45vw, 350px);
+      height: clamp(220px, 45vw, 350px);
+      background: #fb8500;
+      bottom: 10%;
+      right: 10%;
+      animation-delay: 3s;
+    }
 
-      .container h2 {
-        font-size: 1.7rem;
-      }
+    @keyframes float-glow {
+      0% { transform: translateY(0) scale(1); }
+      100% { transform: translateY(-30px) scale(1.1); }
+    }
 
-      .input-display {
-        text-align: center;
-        margin: 0;
-        font-size: 30px;
-        margin: 10px 0;
-      }
+    /* Particles container */
+    #particles-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
 
-      .keypad {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-      }
+    /* Glassmorphism Card */
+    .card-container {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 350px;
+      padding: clamp(20px, 5vw, 30px) clamp(18px, 4vw, 25px);
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 24px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 183, 3, 0.2);
+      text-align: center;
+      color: #ffffff;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-      .keypad button {
-        padding: 15px;
-        font-size: 25px;
-        background-color: #f8bbd0;
-        border: 1px black solid;
-        outline: none;
-        cursor: pointer;
-        transition: background 0.2s;
-      }
+    .card-container.shake {
+      animation: shake-anim 0.4s ease-in-out;
+    }
 
-      .key:hover {
-        background-color: #f48fb1;
-      }
+    @keyframes shake-anim {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-12px); }
+      40%, 80% { transform: translateX(12px); }
+    }
 
-      .keypad button:last-child {
-        grid-column: 2/3;
-      }
+    .header-icon {
+      font-size: clamp(2.2rem, 8vw, 2.8rem);
+      margin-bottom: 5px;
+      display: inline-block;
+      animation: pulse-lock 2s infinite ease-in-out;
+    }
 
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h2>
-        🔒<br />
-        Ingrese la contraseña
-      </h2>
-      <div class="input-display" id="inputDisplay">••••</div>
-      <div class="keypad">
-        <button class="key" onclick="enterDigit('1')">1</button>
-        <button class="key" onclick="enterDigit('2')">2</button>
-        <button class="key" onclick="enterDigit('3')">3</button>
-        <button class="key" onclick="enterDigit('4')">4</button>
-        <button class="key" onclick="enterDigit('5')">5</button>
-        <button class="key" onclick="enterDigit('6')">6</button>
-        <button class="key" onclick="enterDigit('7')">7</button>
-        <button class="key" onclick="enterDigit('9')">9</button>
-        <button class="key" onclick="enterDigit('8')">8</button>
-        <button class="key" onclick="enterDigit('0')">0</button>
-      </div>
+    @keyframes pulse-lock {
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 5px #ffb703); }
+      50% { transform: scale(1.1); filter: drop-shadow(0 0 15px #ffb703); }
+    }
+
+    .card-container h2 {
+      font-size: clamp(1.25rem, 5vw, 1.5rem);
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: #fff;
+    }
+
+    .card-container p.subtitle {
+      font-size: clamp(0.75rem, 3.2vw, 0.85rem);
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 18px;
+    }
+
+    /* PIN slots display */
+    .pin-display {
+      display: flex;
+      justify-content: center;
+      gap: clamp(8px, 3vw, 12px);
+      margin: 12px 0 20px 0;
+    }
+
+    .pin-slot {
+      width: clamp(38px, 12vw, 45px);
+      height: clamp(44px, 14vw, 50px);
+      border: 2px solid rgba(255, 255, 255, 0.25);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #ffb703;
+      background: rgba(0, 0, 0, 0.2);
+      transition: all 0.2s ease;
+    }
+
+    .pin-slot.active {
+      border-color: #ffb703;
+      box-shadow: 0 0 12px rgba(255, 183, 3, 0.5);
+      background: rgba(255, 183, 3, 0.15);
+      transform: scale(1.05);
+    }
+
+    .error-msg {
+      height: 20px;
+      font-size: 0.8rem;
+      color: #ff4d6d;
+      margin-top: -12px;
+      margin-bottom: 10px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .error-msg.visible {
+      opacity: 1;
+    }
+
+    /* Keypad Grid */
+    .keypad {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(8px, 2.5vw, 12px);
+    }
+
+    .keypad button {
+      height: clamp(46px, 12vw, 54px);
+      font-size: clamp(1.2rem, 4.5vw, 1.4rem);
+      font-weight: 500;
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 14px;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.15s ease;
+      backdrop-filter: blur(4px);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .keypad button:hover {
+      background: rgba(255, 183, 3, 0.3);
+      border-color: #ffb703;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 183, 3, 0.3);
+    }
+
+    .keypad button:active {
+      transform: translateY(1px);
+      background: rgba(255, 183, 3, 0.5);
+    }
+
+    .keypad button.btn-clear {
+      font-size: 1rem;
+      color: #ffb703;
+      background: rgba(255, 183, 3, 0.1);
+    }
+
+    .keypad button.btn-zero {
+      grid-column: 2 / 3;
+    }
+
+    /* Success transition */
+    .card-container.success {
+      border-color: #52b788;
+      box-shadow: 0 0 40px rgba(82, 183, 136, 0.6);
+      transform: scale(1.03);
+    }
+
+    /* Floating hearts on success */
+    .heart-particle {
+      position: absolute;
+      font-size: 1.5rem;
+      pointer-events: none;
+      z-index: 100;
+      animation: float-up-heart 1.5s forwards ease-out;
+    }
+
+    @keyframes float-up-heart {
+      0% { opacity: 1; transform: translate(0, 0) scale(0.5) rotate(0deg); }
+      100% { opacity: 0; transform: translate(var(--tx), -120px) scale(1.4) rotate(var(--rot)); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Glows -->
+  <div class="glow-orb glow-orb-1"></div>
+  <div class="glow-orb glow-orb-2"></div>
+
+  <!-- Background particles canvas -->
+  <canvas id="particles-bg"></canvas>
+
+  <div class="card-container" id="cardContainer">
+    <div class="header-icon">🌻</div>
+    <h2>Un Detalle Especial</h2>
+    <p class="subtitle">Ingresa la contraseña para desbloquear tu regalo</p>
+
+    <div class="pin-display">
+      <div class="pin-slot" id="slot-0"></div>
+      <div class="pin-slot" id="slot-1"></div>
+      <div class="pin-slot" id="slot-2"></div>
+      <div class="pin-slot" id="slot-3"></div>
     </div>
 
-    <script>
-      const correctPassword = "0101";
-      const display = document.getElementById("inputDisplay");
-      let input = "";
-      function enterDigit(digit) {
-        if (input.length < 4) {
-          input += digit;
-        }
-        display.textContent = input.padEnd(4, "•");
-        if (input.length === 4) {
-          if (input === correctPassword) {
-            window.location.href = "flower.html"; 
-          } else {
-            alert("Contraseña incorecta, intenta de nuevo");
-            input = "";
-            display.textContent = "••••";
-          }
+    <div class="error-msg" id="errorMsg">Contraseña incorrecta, intenta de nuevo</div>
+
+    <div class="keypad">
+      <button onclick="enterDigit('1')">1</button>
+      <button onclick="enterDigit('2')">2</button>
+      <button onclick="enterDigit('3')">3</button>
+      <button onclick="enterDigit('4')">4</button>
+      <button onclick="enterDigit('5')">5</button>
+      <button onclick="enterDigit('6')">6</button>
+      <button onclick="enterDigit('7')">7</button>
+      <button onclick="enterDigit('8')">8</button>
+      <button onclick="enterDigit('9')">9</button>
+      <button class="btn-clear" onclick="clearPin()">⌫</button>
+      <button class="btn-zero" onclick="enterDigit('0')">0</button>
+    </div>
+  </div>
+
+  <script>
+    const correctPassword = "0406";
+    let input = "";
+    const card = document.getElementById("cardContainer");
+    const errorMsg = document.getElementById("errorMsg");
+
+    function updateSlots() {
+      for (let i = 0; i < 4; i++) {
+        const slot = document.getElementById(`slot-${i}`);
+        if (i < input.length) {
+          slot.textContent = "•";
+          slot.classList.add("active");
+        } else {
+          slot.textContent = "";
+          slot.classList.remove("active");
         }
       }
-    </script>
-  </body>
+    }
+
+    function enterDigit(digit) {
+      if (input.length < 4) {
+        input += digit;
+        updateSlots();
+        errorMsg.classList.remove("visible");
+      }
+
+      if (input.length === 4) {
+        if (input === correctPassword) {
+          onSuccess();
+        } else {
+          onError();
+        }
+      }
+    }
+
+    function clearPin() {
+      if (input.length > 0) {
+        input = input.slice(0, -1);
+        updateSlots();
+        errorMsg.classList.remove("visible");
+      }
+    }
+
+    function onError() {
+      card.classList.add("shake");
+      errorMsg.classList.add("visible");
+      setTimeout(() => {
+        card.classList.remove("shake");
+        input = "";
+        updateSlots();
+      }, 500);
+    }
+
+    function onSuccess() {
+      card.classList.add("success");
+      createHeartExplosion();
+      setTimeout(() => {
+        document.body.style.transition = "opacity 0.6s ease";
+        document.body.style.opacity = "0";
+        setTimeout(() => {
+          window.location.href = "flower.html";
+        }, 600);
+      }, 800);
+    }
+
+    function createHeartExplosion() {
+      const symbols = ["💛", "🌻", "✨", "💖", "💛"];
+      for (let i = 0; i < 25; i++) {
+        const p = document.createElement("div");
+        p.className = "heart-particle";
+        p.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        const rect = card.getBoundingClientRect();
+        p.style.left = (rect.left + rect.width / 2 + (Math.random() * 120 - 60)) + "px";
+        p.style.top = (rect.top + rect.height / 2 + (Math.random() * 80 - 40)) + "px";
+        p.style.setProperty("--tx", (Math.random() * 200 - 100) + "px");
+        p.style.setProperty("--rot", (Math.random() * 360) + "deg");
+        document.body.appendChild(p);
+      }
+    }
+
+    // Canvas floating stars/particles
+    const canvas = document.getElementById("particles-bg");
+    const ctx = canvas.getContext("2d");
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2.5 + 0.5;
+        this.speedY = Math.random() * -0.5 - 0.2;
+        this.opacity = Math.random() * 0.7 + 0.3;
+      }
+      update() {
+        this.y += this.speedY;
+        if (this.y < 0) this.reset();
+      }
+      draw() {
+        ctx.fillStyle = `rgba(255, 215, 0, ${this.opacity})`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < 50; i++) particles.push(new Particle());
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+  </script>
+</body>
 </html>
