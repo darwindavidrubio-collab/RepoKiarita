@@ -149,38 +149,44 @@
       margin-bottom: clamp(10px, 2vh, 30px);
     }
 
-    /* Ribbon / Bouquet Wrapper Base */
+    /* Ribbon / Bouquet Wrapper Base (Único Envoltorio Opaco) */
     .bouquet-ribbon {
       position: absolute;
-      bottom: 15px;
-      width: clamp(65px, 18vw, 80px);
-      height: clamp(110px, 25vh, 140px);
-      background: linear-gradient(135deg, #ff4d6d, #c77dff);
-      clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: clamp(140px, 36vw, 180px);
+      height: clamp(140px, 28vh, 175px);
+      background: linear-gradient(145deg, #d90429 0%, #ff4d6d 50%, #b5179e 100%);
+      clip-path: polygon(10% 0%, 90% 0%, 65% 100%, 35% 100%);
       z-index: 15;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.6);
       opacity: 0;
       animation: bloom-up 1s forwards ease-out 0.3s;
+      border-radius: 4px;
     }
 
     .ribbon-bow {
       position: absolute;
-      bottom: clamp(95px, 22vh, 120px);
-      z-index: 16;
-      font-size: clamp(1.8rem, 6vw, 2.2rem);
+      bottom: clamp(65px, 14vh, 85px);
+      left: 50%;
+      transform: translateX(-50%) scale(0);
+      z-index: 17;
+      font-size: clamp(2.2rem, 7vw, 2.8rem);
       animation: pop-bow 0.8s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275) 1s;
       opacity: 0;
-      transform: scale(0);
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
     }
 
     @keyframes pop-bow {
-      to { opacity: 1; transform: scale(1); }
+      to { opacity: 1; transform: translateX(-50%) scale(1); }
     }
 
     /* SINGLE FLOWER STYLES */
     .flower {
       position: absolute;
-      bottom: 30px;
+      bottom: 25px;
+      left: calc(50% - 7px); /* Todos los tallos nacen exactamente del centro */
       transform-origin: bottom center;
       z-index: 6;
       display: flex;
@@ -190,34 +196,29 @@
 
     /* Flower Positions and Angles for a full bouquet */
     .flower-1 { /* Center main */
-      left: calc(50% - 22px);
-      height: 92%;
-      transform: scale(1.05);
+      height: 95%;
+      transform: rotate(0deg) scale(1.05);
       z-index: 10;
     }
     .flower-2 { /* Left 1 */
-      left: calc(50% - 65px);
-      height: 80%;
-      transform: rotate(-16deg) scale(0.92);
-      z-index: 8;
+      height: 84%;
+      transform: rotate(-15deg) scale(0.92);
+      z-index: 9;
     }
     .flower-3 { /* Right 1 */
-      left: calc(50% + 20px);
-      height: 80%;
-      transform: rotate(16deg) scale(0.92);
-      z-index: 8;
+      height: 84%;
+      transform: rotate(15deg) scale(0.92);
+      z-index: 9;
     }
     .flower-4 { /* Far Left 2 */
-      left: calc(50% - 105px);
-      height: 68%;
-      transform: rotate(-32deg) scale(0.78);
-      z-index: 6;
+      height: 72%;
+      transform: rotate(-30deg) scale(0.80);
+      z-index: 7;
     }
     .flower-5 { /* Far Right 2 */
-      left: calc(50% + 60px);
-      height: 68%;
-      transform: rotate(32deg) scale(0.78);
-      z-index: 6;
+      height: 72%;
+      transform: rotate(30deg) scale(0.80);
+      z-index: 7;
     }
 
     /* Stem */
@@ -408,8 +409,8 @@
     }
 
     @keyframes bloom-up {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
+      from { opacity: 0; transform: translateX(-50%) translateY(40px); }
+      to { opacity: 1; transform: translateX(-50%) translateY(0); }
     }
 
     /* Small screens adjustments */
